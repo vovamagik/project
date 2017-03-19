@@ -285,6 +285,7 @@ namespace OsEngine.OsTrader.Panels
 
     public class FirstBot : BotPanel
     {
+        //111
         public override string GetNameStrategyType()
         {
             return "FirstBot";
