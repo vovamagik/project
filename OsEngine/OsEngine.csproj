@@ -415,6 +415,9 @@
     <Compile Include="OsTrader\Panels\PanelsGui\MomentumMacdUi.xaml.cs">
       <DependentUpon>MomentumMacdUi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OsTrader\Panels\PanelsGui\MyNewRobot1Ui.xaml.cs">
+      <DependentUpon>MyNewRobot1Ui.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OsTrader\Panels\PanelsGui\OneLegArbitrationUi.xaml.cs">
       <DependentUpon>OneLegArbitrationUi.xaml</DependentUpon>
     </Compile>
@@ -831,6 +834,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OsTrader\Panels\PanelsGui\MomentumMacdUi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OsTrader\Panels\PanelsGui\MyNewRobot1Ui.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
