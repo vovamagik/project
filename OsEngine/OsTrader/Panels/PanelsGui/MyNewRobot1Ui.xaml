@@ -4,7 +4,7 @@
       Title="Настройки стратегии" Height="246.352" Width="317.786" Icon="/Images/OsLogo.ico" Style="{StaticResource WindowStyleNoResize}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid Margin="0,0,0,1">
         <Rectangle Margin="5,5,5,37"/>
-        <Button Content="Принять" Margin="0,0,10,10"  Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="120"/>
+        <Button Content="Принять" Margin="0,0,10,10"  Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="120" Click="Button_Click"/>
         <Label Content="Объём фиксированный" HorizontalAlignment="Left" Margin="23,48,0,0" VerticalAlignment="Top" />
         <Label Content="Проскальзывание" HorizontalAlignment="Left" Margin="23,77,0,0" VerticalAlignment="Top" />
         <ComboBox x:Name="ComboBoxRegime" HorizontalAlignment="Left" Margin="173,25,0,0" VerticalAlignment="Top" Width="120"/>
