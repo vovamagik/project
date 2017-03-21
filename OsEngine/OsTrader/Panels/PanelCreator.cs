@@ -61,8 +61,9 @@ namespace OsEngine.OsTrader.Panels
             result.Add("Robot");
             result.Add("FirstBot");
 
-            
-                
+            //мои роботы
+            result.Add("MyNewRobot1");
+
             return result;
         }
 
@@ -218,6 +219,8 @@ namespace OsEngine.OsTrader.Panels
 
     # region мои роботы
 
+
+
     /// <summary>
     /// Стратегия открытия каждый день и закртия
     /// в конце дня одной позиции
@@ -251,7 +254,6 @@ namespace OsEngine.OsTrader.Panels
 
         public override void ShowIndividualSettingsDialog()
         {
-            //MessageBox.Show("У данного робота пока нет настроек!");
             MyNewRobot1Ui ui = new MyNewRobot1Ui(this);
             ui.ShowDialog();
         }
@@ -269,7 +271,7 @@ namespace OsEngine.OsTrader.Panels
             Slipage = 0;
             VolumeFix = 1;
 
-            _tab.CandleFinishedEvent += Strateg_CandleFinishedEvent;
+            //_tab.CandleFinishedEvent += Strateg_CandleFinishedEvent;
 
         }
 
@@ -277,10 +279,10 @@ namespace OsEngine.OsTrader.Panels
         /// <summary>
         /// событие завершения свечи
         /// </summary>
-        private void Strateg_CandleFinishedEvent(List<Candle> candles)
-        {
+        //private void Strateg_CandleFinishedEvent(List<Candle> candles)
+        //{
 
-        }
+        //}
 
     }
 
