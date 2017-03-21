@@ -204,13 +204,90 @@ namespace OsEngine.OsTrader.Panels
             {
                 bot = new PairTraderSpreadSma(name);
             }
-            
+
+            //мои роботы
+            if (nameClass == "MyNewRobot1")
+            {
+                bot = new MyNewRobot1(name);
+            }
 
             return bot;
         }
     }
 
-    # region роботы из инструкций с пошаговым созданием
+
+    # region мои роботы
+
+    /// <summary>
+    /// Стратегия открытия каждый день и закртия
+    /// в конце дня одной позиции
+    /// мой тестовый робот
+    /// </summary>
+    public class MyNewRobot1 : BotPanel
+    {
+
+        private BotTabSimple _tab;
+
+        /// <summary>
+        /// проскальзывание
+        /// </summary>
+        public decimal Slipage;
+
+        /// <summary>
+        /// фиксированный объем для входа
+        /// </summary>
+        public int VolumeFix;
+
+        /// <summary>
+        /// режим работы
+        /// </summary>
+        public BotTradeRegime Regime;
+
+
+        public override string GetNameStrategyType()
+        {
+            return "MyNewRobot1";
+        }
+
+        public override void ShowIndividualSettingsDialog()
+        {
+            //MessageBox.Show("У данного робота пока нет настроек!");
+            MyNewRobot1Ui ui = new MyNewRobot1Ui(this);
+            ui.ShowDialog();
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="name"></param>
+        public MyNewRobot1(string name) : base(name)
+        {
+
+            TabCreate(BotTabType.Simple);
+            _tab = TabsSimple[0];
+
+            Slipage = 0;
+            VolumeFix = 1;
+
+            _tab.CandleFinishedEvent += Strateg_CandleFinishedEvent;
+
+        }
+
+
+        /// <summary>
+        /// событие завершения свечи
+        /// </summary>
+        private void Strateg_CandleFinishedEvent(List<Candle> candles)
+        {
+
+        }
+
+    }
+
+    #endregion
+
+
+    #region роботы из инструкций с пошаговым созданием
 
     public class Robot : BotPanel
     {
