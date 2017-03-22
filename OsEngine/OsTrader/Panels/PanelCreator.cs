@@ -271,7 +271,7 @@ namespace OsEngine.OsTrader.Panels
             Slipage = 0;
             VolumeFix = 1;
 
-            //_tab.CandleFinishedEvent += Strateg_CandleFinishedEvent;
+            _tab.CandleFinishedEvent += Strateg_CandleFinishedEvent;
 
         }
 
@@ -279,10 +279,36 @@ namespace OsEngine.OsTrader.Panels
         /// <summary>
         /// событие завершения свечи
         /// </summary>
-        //private void Strateg_CandleFinishedEvent(List<Candle> candles)
-        //{
+        private void Strateg_CandleFinishedEvent(List<Candle> candles)
+        {
 
-        //}
+            // берём значения из инидикаторов.
+            // робот включен или нет
+            if (Regime == BotTradeRegime.Off)
+            {
+                return;
+            }
+
+            //Фильтр входа в позицию по времени
+            if (TimeFilterOpenPosition(candles))
+            {
+                return;
+            }
+
+
+        }
+
+        /// <summary>
+        /// Фильтр по времне входа в позицию
+        /// Например - пропускаем на открытии первые три свечи
+        /// truu - если фильтр сработал, false если нет
+        /// 
+        /// </summary>
+        /// <param name="candles"></param>
+        private bool TimeFilterOpenPosition(List<Candle> candles)
+        {
+            return false;
+        }
 
     }
 
