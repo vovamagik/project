@@ -246,6 +246,13 @@ namespace OsEngine.OsTrader.Panels
         /// </summary>
         public BotTradeRegime Regime;
 
+        /// <summary>
+        /// номер свечи, при открытии, после
+        /// которой можно начать работу
+        /// используется в фильтре по времени
+        /// </summary>
+        public int NumerSkipCandleTimeFilter;
+
 
         public override string GetNameStrategyType()
         {
@@ -271,10 +278,15 @@ namespace OsEngine.OsTrader.Panels
             Slipage = 0;
             VolumeFix = 1;
 
+            NumerSkipCandleTimeFilter = 3;
+
             _tab.CandleFinishedEvent += Strateg_CandleFinishedEvent;
 
         }
 
+
+        // переменные, нужные для торговли
+        
 
         /// <summary>
         /// событие завершения свечи
@@ -288,6 +300,7 @@ namespace OsEngine.OsTrader.Panels
             {
                 return;
             }
+
 
             //Фильтр входа в позицию по времени
             if (TimeFilterOpenPosition(candles))
@@ -307,6 +320,20 @@ namespace OsEngine.OsTrader.Panels
         /// <param name="candles"></param>
         private bool TimeFilterOpenPosition(List<Candle> candles)
         {
+
+            // если свечей меньше чем указано в NumerSkipCandleTimeFilter.
+            if (candles.Count < NumerSkipCandleTimeFilter)
+            {
+                return true;
+            }
+
+            TimeSpan differencedate = candles[candles.Count - 1].TimeStart - candles[candles.Count - 1 - NumerSkipCandleTimeFilter].TimeStart;
+            // определаем что это новый день (открытие сесиии)
+            if (differencedate.Days > 0 )
+            {
+                return true;
+            }
+
             return false;
         }
 
