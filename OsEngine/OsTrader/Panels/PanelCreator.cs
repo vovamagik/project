@@ -286,7 +286,12 @@ namespace OsEngine.OsTrader.Panels
 
 
         // переменные, нужные для торговли
-        
+
+        /// <summary>
+        /// количсетво свечей за один день
+        /// необходимо для обязательно закрытия всх позиций в конце дня
+        /// </summary>
+        private int CountCandleoOfDay;
 
         /// <summary>
         /// событие завершения свечи
@@ -327,7 +332,7 @@ namespace OsEngine.OsTrader.Panels
                 return true;
             }
 
-            TimeSpan differencedate = candles[candles.Count - 1].TimeStart - candles[candles.Count - 1 - NumerSkipCandleTimeFilter].TimeStart;
+            TimeSpan differencedate = candles[candles.Count - 1].TimeStart.Date - candles[candles.Count - 1 - NumerSkipCandleTimeFilter].TimeStart.Date;
             // определаем что это новый день (открытие сесиии)
             if (differencedate.Days > 0 )
             {
