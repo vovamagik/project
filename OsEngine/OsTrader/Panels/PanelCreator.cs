@@ -313,8 +313,31 @@ namespace OsEngine.OsTrader.Panels
                 return;
             }
 
+            // распределяем логику в зависимости от текущей позиции
+
+            List<Position> openPositions = _tab.PositionsOpenAll;
+
+            if (openPositions != null && openPositions.Count != 0)
+            {
+                for (int i = 0; i < openPositions.Count; i++)
+                {
+                    LogicClosePosition(candles, openPositions[i]);
+
+                }
+            }
+
+            if (Regime == BotTradeRegime.OnlyClosePosition)
+            //закрыть все позиции
+            {
+                return;
+            }
+            if (openPositions == null || openPositions.Count == 0)
+            {
+                LogicOpenPosition(candles, openPositions);
+            }
 
         }
+
 
         /// <summary>
         /// Фильтр по времне входа в позицию
@@ -332,17 +355,33 @@ namespace OsEngine.OsTrader.Panels
                 return true;
             }
 
-            TimeSpan differencedate = candles[candles.Count - 1].TimeStart.Date - candles[candles.Count - 1 - NumerSkipCandleTimeFilter].TimeStart.Date;
+            //TimeSpan differencedate = candles[candles.Count - 1].TimeStart.Date - candles[candles.Count - 1 - NumerSkipCandleTimeFilter].TimeStart.Date;
             // определаем что это новый день (открытие сесиии)
-            if (differencedate.Days > 0 )
-            {
-                return true;
-            }
+            //if (differencedate.Days > 0 )
+            //{
+                //return true;
+            //}
 
             return false;
         }
 
-    }
+
+        /// <summary>
+        /// логика открытия позиции
+        /// </summary>
+        private void LogicOpenPosition(List<Candle> candles, List<Position> position)
+        {
+
+        }
+
+        /// <summary>
+        /// логика зыкрытия позиции и открытие по реверсивной системе
+        /// </summary>
+        private void LogicClosePosition(List<Candle> candles, Position position)
+        {
+        }
+
+        }
 
     #endregion
 
